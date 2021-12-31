@@ -1,0 +1,84 @@
+server:
+  port: 8361 # 服务端口
+
+spring:
+  application:
+    name: service-train # 服务名
+  datasource: # mysql数据库连接
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Zkr@20200708
+    url: jdbc:mysql://58.87.107.31:3306/forum?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    type: com.zaxxer.hikari.HikariDataSource # 连接池类型
+    hikari:
+      pool-name: wenlvHikariPool # 连接池名称，默认HikariPool-1
+      maximum-pool-size: 12 # 最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
+      connection-timeout: 60000 # 连接超时时间:毫秒，小于250毫秒，否则被重置为默认值30秒
+      minimum-idle: 10 # 最小空闲连接，默认值10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
+      idle-timeout: 500000 # 空闲连接超时时间，默认值600000（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；不等于0且小于10秒，会被重置为10秒。
+      # 只有空闲连接数大于最大连接数且空闲时间超过该值，才会被释放
+      max-lifetime: 540000 # 连接最大存活时间.不等于0且小于30秒，会被重置为默认值30分钟.设置应该比mysql设置的超时时间短
+      connection-test-query: SELECT 1 #连接测试查询
+
+  redis:
+    host: 58.87.107.31
+    port: 6379
+    database: 0
+    timeout: 1800000
+    password: tour1qaz2wsx
+    lettuce:
+      pool:
+        max-active: 20 #最大连接数
+        max-wait: -1    #最大阻塞等待时间(负数表示没限制)
+        max-idle: 5    #最大空闲
+        min-idle: 0     #最小空闲
+  #spring:
+  jackson: #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 3000MB #单个数据的大小
+      max-request-size: 5000MB #总数据的大小
+mybatis-plus:
+  configuration:
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #mybatis日志
+  mapper-locations:
+    - classpath*:com/forum/common/**/xml/*.xml
+
+#腾讯云配置
+txunyun:
+  sms:
+    secretid: id
+    secretkey: key
+    appid: appid
+    sign: 签名内容
+    templateID: 模板id
+  cos:
+    secretId: AKIDQuABCJEoBH7h1R6S4SZw3zZtwIUQnMoC
+    secretKey: GzS1ZvnQlqf6IEXZKo2z82h03tRhLlum
+    region: ap-beijing
+    bucketName: forum-file-1254292961
+    folder: spot_pic/
+    image: image/
+    learn: learning-materials/
+    courseMaterial: course-materials/
+
+
+# 企业微信配置
+qiyeweixin:
+  corp:
+    corpid: ww61845d6b2e7a4ad2
+    corpsecret: z7eaKMJnIf7IsaZ9HaFykTsJsN2OGTG3ixCt2SqQP4o
+
+#对于swagger的配置
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+forumLogin:
+  outData: 6000
+  outEquip: 8640000
+  msgCode: 10
+  imgCode: 2

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manage.service.mapper.DepartmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.manage.service.entity.Department">
+    <result column="id" property="id" />
+    <result column="gmt_modified" property="gmtModified" />
+    <result column="gmt_create" property="gmtCreate" />
+        <result column="name" property="name" />
+        <result column="name_en" property="nameEn" />
+        <result column="parent_id" property="parentId" />
+        <result column="department_order" property="departmentOrder" />
+        <result column="is_deleted" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        gmt_modified,
+        gmt_create,
+        name, name_en, parent_id, department_order, is_deleted
+    </sql>
+
+</mapper>
